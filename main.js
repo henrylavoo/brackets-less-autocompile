@@ -124,7 +124,7 @@ define(function (require, exports, module) {
     }
   });
 
-  
+  //Make status icon blink when LESS is compiled
   function blink() {
     var status = document.getElementById( 'status-inspection' );
     status.className = status.className + ' blink';
@@ -133,15 +133,6 @@ define(function (require, exports, module) {
     },300);
   }
   
-  function buildStatus() {
-    var StatusIndicators = document.getElementById( 'status-indicators' ),
-        status = document.createElement( 'div' );
-    status.id = 'status-less';
-    StatusIndicators.appendChild( status );
-  };
-  
-  
-  buildStatus();
   ExtensionUtils.loadStyleSheet( module, 'style.less' );
   
 });
