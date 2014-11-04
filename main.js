@@ -99,13 +99,15 @@ define(function (require, exports, module) {
     $.when(connection, files).then(function (compiler, files) {
       compile(compiler, files).then(function () {
         deferred.resolve();
+        blinkSuccess();
       }, function (error) {
         deferred.resolve({ errors: [convertError(error)] });
+        blinkError();
       });
     }, function (error) {
       deferred.resolve({ errors: [error] });
+      blinkError();
     });
-
     return deferred.promise();
   }
 
@@ -122,4 +124,30 @@ define(function (require, exports, module) {
     }
   });
 
+  
+  function blinkSuccess() {
+    var status = document.getElementById( 'status-less' );
+    status.className = 'success';
+    setTimeout( function() {
+      status.className = status.className + ' fade';
+    },300);
+  }
+  function blinkError() {
+    var status = document.getElementById( 'status-less' );
+    status.className = 'error';
+    setTimeout( function() {
+      status.className = status.className + ' fade';
+    },300);
+  }
+  
+  function buildStatus() {
+    var StatusIndicators = document.getElementById( 'status-indicators' ),
+        status = document.createElement( 'div' );
+    status.id = 'status-less';
+    StatusIndicators.appendChild( status );
+  };
+  
+  buildStatus();
+  ExtensionUtils.loadStyleSheet( module, 'style.less' );
+  
 });
