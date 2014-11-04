@@ -1,18 +1,12 @@
-#status-less {
-  float: right;
-  margin-top: 5px;
-  padding: 7px !important;
-  border-radius: 50%;
-  border: 1px solid #343434;
-  background-color: transparent;
+#status-inspection {
   transition: .3s;
-  &.success {
-    background-color: #89ff00;
+  &.inspection-valid.blink {
+    background-color: #94ce46;
   }
-  &.error {
-    background-color: #ff3100;
+  &.inspection-errors.blink {
+    background-color: #ffc600;
   }
-  &.fade {
-    opacity: .3;
+  &.blink {
+    transition: 0;
   }
 }
