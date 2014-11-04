@@ -99,14 +99,14 @@ define(function (require, exports, module) {
     $.when(connection, files).then(function (compiler, files) {
       compile(compiler, files).then(function () {
         deferred.resolve();
-        blinkSuccess();
+        blink();
       }, function (error) {
         deferred.resolve({ errors: [convertError(error)] });
-        blinkError();
+        blink();
       });
     }, function (error) {
       deferred.resolve({ errors: [error] });
-      blinkError();
+      blink();
     });
     return deferred.promise();
   }
@@ -125,14 +125,7 @@ define(function (require, exports, module) {
   });
 
   
-  function blinkSuccess() {
-    var status = document.getElementById( 'status-inspection' );
-    status.className = status.className + ' blink';
-    setTimeout( function() {
-      status.className = status.className.replace('blink','');
-    },300);
-  }
-  function blinkError() {
+  function blink() {
     var status = document.getElementById( 'status-inspection' );
     status.className = status.className + ' blink';
     setTimeout( function() {
