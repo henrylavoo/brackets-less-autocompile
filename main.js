@@ -126,17 +126,17 @@ define(function (require, exports, module) {
 
   
   function blinkSuccess() {
-    var status = document.getElementById( 'status-less' );
-    status.className = 'success';
+    var status = document.getElementById( 'status-inspection' );
+    status.className = status.className + ' blink';
     setTimeout( function() {
-      status.className = status.className + ' fade';
+      status.className = status.className.replace('blink','');
     },300);
   }
   function blinkError() {
-    var status = document.getElementById( 'status-less' );
-    status.className = 'error';
+    var status = document.getElementById( 'status-inspection' );
+    status.className = status.className + ' blink';
     setTimeout( function() {
-      status.className = status.className + ' fade';
+      status.className = status.className.replace('blink','');
     },300);
   }
   
@@ -146,6 +146,7 @@ define(function (require, exports, module) {
     status.id = 'status-less';
     StatusIndicators.appendChild( status );
   };
+  
   
   buildStatus();
   ExtensionUtils.loadStyleSheet( module, 'style.less' );
